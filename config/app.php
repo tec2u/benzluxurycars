@@ -16,7 +16,7 @@ return [
     |
     */
 
-    'name' => env('APP_NAME', 'RealRentCar'),
+    'name' => env('APP_NAME', 'Benz Luxury Cars'),
 
     /*
     |--------------------------------------------------------------------------

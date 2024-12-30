@@ -131,9 +131,9 @@
             <div>
                 <h2 style="color: #ff9b00">Real Rent Car</h2>
                 <ul>
-                    <li>DR ANABDOUR AMMELEN </li>
-                    <li>TIZNIT</li>
-                    <li>+212637998660 | contact.galdi@gmail.com</li>
+                    <li>Khasan Xxxxx Xxxxx </li>
+                    <li>Benz Luxury Cars</li>
+                    <li>+971 0000 00000| Benzluxurycars@gmail.com</li>
                 </ul>
                 <h2>Client</h2>
                 <ul>

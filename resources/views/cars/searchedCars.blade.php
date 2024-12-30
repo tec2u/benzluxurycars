@@ -44,9 +44,9 @@
                     </div>
                     <div class="flex items-center justify-between mt-2 mb-5">
                         <p>
-                            <span class="text-3xl font-bold text-slate-900">{{ $car->price_per_day }}</span>
+                            <span class="text-3xl font-bold text-slate-900">{{ $car->price_per_day }} <span style='font-size:10px'>AED</span></span>
                             <span
-                                class="text-sm line-through text-slate-900">{{ intval(($car->price_per_day * 100) / (100 - $car->reduce)) }}
+                                class="text-sm line-through text-slate-900">{{ intval(($car->price_per_day * 100) / (100 - $car->reduce)) }} <span style='font-size:10px'>AED</span>
                             </span>
                         </p>
 

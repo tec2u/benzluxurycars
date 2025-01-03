@@ -13,10 +13,16 @@ class CarController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
-        $cars = Car::latest()->paginate(8);
-        return view('admin.cars', compact('cars'));
+        $search = $request->search ?? null;
+        $carsQuery = Car::latest();
+        if ($search) {
+            $carsQuery->where('model', 'like', "%$search%");
+        }
+        $cars = $carsQuery->paginate(8);
+
+        return view('admin.cars', compact('cars', 'search'));
     }
 
     /**
@@ -132,18 +138,18 @@ class CarController extends Controller
     public function destroy(Car $car)
     {
         $car = Car::findOrFail($car->id);
-        
+
         // Check if the car has any active reservations
         $activeReservations = $car->reservations()->where('status', 'Active')->count();
-        
+
         if ($activeReservations > 0) {
             // Prevent deletion and return with error message
             return redirect()->route('cars.index')->with('error', 'Cannot delete car with active reservations.');
         }
-        
+
         // Delete inactive reservations
         $car->reservations()->where('status', '!=', 'Active')->delete();
-        
+
         // if ($car->image) {
         //     // Get the filename from the image path
         //     $filename = basename($car->image);
@@ -151,7 +157,7 @@ class CarController extends Controller
         //     // Delete the image file from the storage
         //     Storage::disk('local')->delete('images/cars/' . $filename);
         // }
-        
+
         $car->delete();
 
         return redirect()->route('cars.index')->with('success', 'Car deleted successfully.');

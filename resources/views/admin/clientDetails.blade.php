@@ -40,7 +40,7 @@
                             <img loading="lazy" class="w-full h-full object-cover overflow-hidden rounded-md"
                                 src="{{ $reservation->car->image }}" alt="">
                         </div>
-                        <div class="m-3 p-1 md:w-[500px]">
+                        <div class="m-3 p-1 md:w-[500px] relative">
                             <h2 class="mt-2 font-car text-gray-800 text-2xl font-medium">{{ $reservation->car->brand }}
                                 {{ $reservation->car->model }} {{ $reservation->car->engine }}</h2>
                             <div class="mt-4 flex justify-start md:gap-10 gap-5">
@@ -104,7 +104,7 @@
                                 <img loading="lazy" class="w-full h-full object-cover overflow-hidden rounded-md"
                                     src="{{ $reservation->car->image }}" alt="">
                             </div>
-
+                            <a href="{{ route('car.reservationEdit', ['reservation_id' => $reservation->id]) }}" class="top-0 right-0 p-3 ml-3 font-bold border rounded-md border-pr-400 text-pr-400 hover:text-white hover:bg-pr-400 absolute">edit</a>
                         </div>
 
                     </div>

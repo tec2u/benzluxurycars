@@ -62,6 +62,7 @@ Route::prefix('admin')->middleware('admin')->group(function () {
         '/dashboard',
         adminDashboardController::class
     )->name('adminDashboard');
+    Route::get('/all-reservations', [ReservationController::class, 'allReservations'])->name('allReservations');
 
     Route::resource('cars', CarController::class);
 
@@ -86,6 +87,8 @@ Route::prefix('admin')->middleware('admin')->group(function () {
     // Route::delete('/deleteUser/{user}', [usersController::class, 'destroy'])->name('deleteUser');
 
     Route::get('/userDetails/{user}', [usersController::class, 'show'])->name('userDetails');
+    Route::get('/reservations/edit/{reservation_id}', [ReservationController::class, 'edit'])->name('car.reservationEdit');
+    Route::post('/reservations/update/{reservation_id}', [ReservationController::class, 'update'])->name('car.reservationUpdate');
 });
 
 // --------------------------------------------------------------------------//
@@ -97,7 +100,6 @@ Route::prefix('admin')->middleware('admin')->group(function () {
 
 Route::get('/reservations/{car}', [ReservationController::class, 'create'])->name('car.reservation')->middleware('auth', 'restrictAdminAccess');
 Route::post('/reservations/{car}', [ReservationController::class, 'store'])->name('car.reservationStore')->middleware('auth', 'restrictAdminAccess');
-
 Route::get('/reservations', function () {
 
     $reservations = Reservation::where('user_id', Auth::user()->id)->orderBy('created_at', 'desc')->get();

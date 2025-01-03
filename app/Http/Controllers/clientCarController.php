@@ -10,7 +10,7 @@ class clientCarController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
         $cars = Car::where('status', '=', 'available')->paginate(9);
         return view('cars.cars', compact('cars'));

@@ -49,7 +49,7 @@
                             <img loading="lazy" class="w-full h-full object-cover overflow-hidden rounded-md"
                                 src="{{ $reservation->car->image }}" alt="">
                         </div>
-                        <div class="m-3 p-1 md:w-2/3 w-full">
+                        <div class="m-3 p-1 md:w-2/3 w-full relative">
                             <h2 class="mt-2 font-car text-gray-800 text-2xl font-medium">{{ $reservation->car->brand }}
                                 {{ $reservation->car->model }} {{ $reservation->car->engine }}</h2>
                             <div class="mt-4 flex md:flex-row flex-col justify-start md:gap-10 gap-5">
@@ -121,7 +121,6 @@
                                         Get Reservation Invoice</button>
                                 </a>
                             </div>
-
                         </div>
 
                     </div>

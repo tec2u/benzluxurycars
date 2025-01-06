@@ -53,13 +53,13 @@ class PaymentController extends Controller
         if ($capture['status'] === 'COMPLETED') {
             $detail = 'Order payment completed successfully';
             $message = 'Success';
-            $reservation->status = 'Paid';
+            $reservation->status = 'Active';
             $reservation->payment_status = 'Paid';
             $reservation->save();
             return view('payment.payment_response', compact('detail', 'message'));
         } else {
-            $reservation->status = 'Cancelled';
-            $reservation->payment_status = 'Cancelled';
+            $reservation->status = 'Canceled';
+            $reservation->payment_status = 'Canceled';
             $reservation->save();
             $detail = 'There was a problem trying to pay for the order';
             $message = 'Failed';

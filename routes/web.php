@@ -11,6 +11,7 @@ use App\Http\Controllers\addNewAdminController;
 use App\Http\Controllers\invoiceController;
 use App\Http\Controllers\AdminAuth\LoginController;
 use App\Http\Controllers\carSearchController;
+use App\Http\Controllers\PaymentController;
 use App\Models\User;
 use App\Models\Car;
 use App\Models\Reservation;
@@ -97,7 +98,7 @@ Route::prefix('admin')->middleware('admin')->group(function () {
 
 
 // ------------------- client routes --------------------------------------- //
-
+Route::get('/confirm-payment/{id}', [PaymentController::class, 'confirmPayment']);
 Route::get('/reservations/{car}', [ReservationController::class, 'create'])->name('car.reservation')->middleware('auth', 'restrictAdminAccess');
 Route::post('/reservations/{car}', [ReservationController::class, 'store'])->name('car.reservationStore')->middleware('auth', 'restrictAdminAccess');
 Route::get('/reservations', function () {

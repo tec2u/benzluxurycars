@@ -157,6 +157,7 @@
                                         <button>Edit payment </button>
                                     </a>
 
+                                    <a href="{{ route('car.reservationEdit', ['reservation_id' => $reservation->id]) }}" class="p-2 mb-1 text-white bg-pr-500 hover:bg-pr-400 font-medium rounded text-center">Edit date</a>
                                 </td>
 
                             </tr>

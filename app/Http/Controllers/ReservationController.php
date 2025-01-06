@@ -101,14 +101,21 @@ class ReservationController extends Controller
         $reservation->price_per_day = $car->price_per_day;
         $reservation->total_price = $reservation->days * $reservation->price_per_day;
         $reservation->status = 'Pending';
-        $reservation->payment_method = 'At store';
+        $reservation->payment_method = 'paypal';
         $reservation->payment_status = 'Pending';
-        $reservation->save();
 
         $car->status = 'Reserved';
+        $reservation->save();
         $car->save();
+        $paymentControllerInstance = new PaymentController();
+        $paymentResponse = $paymentControllerInstance->createPayment($reservation);
 
-        return view('thankyou', ['reservation' => $reservation]);
+        if ($paymentResponse['message'] === 'success') {
+
+            return redirect($paymentResponse['payment_link']);
+        }
+
+        return redirect()->back()->withErrors(['error' => 'Error']);
     }
 
     /**

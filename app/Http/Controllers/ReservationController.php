@@ -113,6 +113,10 @@ class ReservationController extends Controller
         if ($paymentResponse['message'] === 'success') {
 
             return redirect($paymentResponse['payment_link']);
+        } else {
+            Reservation::where('id', $reservation->id)->delete();
+            $car->status = 'Available';
+            $car->save();
         }
 
         return redirect()->back()->withErrors(['error' => 'Error']);

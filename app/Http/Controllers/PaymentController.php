@@ -22,11 +22,11 @@ class PaymentController extends Controller
                         'currency_code' => 'USD',
                         'value' => floatval($data->total_price),
                     ],
-                    'custom_id' => 'Pedido12345',
+                    'custom_id' => 'order_'.$data->id,
                 ],
             ],
             'application_context' => [
-                'brand_name' => 'Minha Loja', // Nome da sua loja
+                'brand_name' => 'Benz Luxury Cars', // Nome da sua loja
                 'return_url' => route('confirmPayment', ['id' => $data->id]),
                 'cancel_url' => route('home'),
             ],

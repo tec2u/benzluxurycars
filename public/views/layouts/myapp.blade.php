@@ -12,8 +12,8 @@
     {{-- sweet alert --}}
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     @include('flatpickr::components.style')
-    <link rel="stylesheet" href="{{ asset('css/app.css') }}" type="text/css" />
-    <script src="{{ asset('js/app.js') }}"></script>
+    @vite('resources/css/app.css')
+    @vite('resources/js/app.js')
     <style>
         html {
             scroll-behavior: smooth;

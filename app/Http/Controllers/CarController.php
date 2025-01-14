@@ -65,7 +65,7 @@ class CarController extends Controller
             $imageName = $request->brand . '-' . $request->model . '-' . $request->engine . '-' . Str::random(10) . '.' . $request->file('image')->extension();
             $image = $request->file('image');
             $path = $image->storeAs('images/cars', $imageName);
-            $car->image = '/'.$path;
+            $car->image = '/' . $path;
         }
         $car->save();
 
@@ -117,16 +117,39 @@ class CarController extends Controller
         $car->stars = $request->stars;
 
         if ($request->hasFile('image')) {
+            // Se a imagem principal for alterada, exclui a imagem anterior
+            if ($car->image) {
+                $filename = basename($car->image);
+                Storage::disk('local')->delete('images/cars/' . $filename);  // Exclui a imagem anterior
+            }
 
-            $filename = basename($car->image);
-            Storage::disk('local')->delete('images/cars/' . $filename);
-            $car->delete();
-
+            // Salva a nova imagem principal
             $imageName = $request->brand . '-' . $request->model . '-' . $request->engine . '-' . Str::random(10) . '.' . $request->file('image')->extension();
             $image = $request->file('image');
-            $path = $image->storeAs('images/cars', $imageName);
-            $car->image = $path;
+            $path = $image->storeAs('images/cars', $imageName, 'local');  // Salva em storage/images/cars
+            $car->image = "/".$path;
         }
+
+        // Processar múltiplas imagens adicionais
+        if ($request->hasFile('multiple_images')) {
+            // Exclui as imagens antigas (se necessário)
+            if ($car->multiple_images) {
+                foreach (json_decode($car->multiple_images) as $imagePath) {
+                    Storage::disk('local')->delete($imagePath);  // Exclui as imagens anteriores
+                }
+            }
+
+            // Salvar novas imagens
+            $images = [];
+            foreach ($request->file('multiple_images') as $image) {
+                $imageName = $request->brand . '-' . $request->model . '-' . Str::random(10) . '.' . $image->extension();
+                $path = $image->storeAs('images/cars', $imageName, 'local');  // Salva em storage/images/cars
+                $images[] = "/".$path;
+            }
+
+            $car->multiple_images = json_encode($images); // Salva as imagens no formato JSON
+        }
+
         $car->save();
 
         return redirect()->route('cars.index');

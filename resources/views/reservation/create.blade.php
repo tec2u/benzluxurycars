@@ -9,6 +9,11 @@
         overflow: hidden;
         background-repeat: no-repeat;
         margin: 0 7.5px;
+        cursor: pointer;
+    }
+    .image-thumb-car:hover {
+        width: 70px;
+        height: 70px;
     }
 </style>
 <div class="mx-auto max-w-screen-xl bg-white rounded-md p-6 m-8 ">

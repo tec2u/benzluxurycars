@@ -16,6 +16,9 @@
         border: 3px solid #ff9b00;
     }
 
+    .selected-thumb {
+        border: 3px solidrgb(255, 184, 79)
+    }
     .container-thumbs {
         overflow: auto;
     }
@@ -49,9 +52,10 @@
     }
 </style>
 <script defer>
-    function changeNewImage(pathImage) {
+    function changeNewImage(iThis, pathImage) {
+        $('.selected-thumb').removeClass('selected-thumb')
+        $(iThis).addClass('selected-thumb')
         const imageElement = document.getElementById('cover-image')
-        console.log(imageElement)
         imageElement.src = pathImage
     }
 </script>
@@ -147,9 +151,9 @@
 
             <div class="flex mt-2 w-full container-thumbs">
                 @if ($car->multiple_images)
-                <div onclick="changeNewImage('{{ $car->image }}')" style="background-image: url('{{ $car->image }}')" class="image-thumb-car"></div>
+                <div onclick="changeNewImage(this, '{{ $car->image }}')" style="background-image: url('{{ $car->image }}')" class="image-thumb-car"></div>
                 @foreach (json_decode($car->multiple_images) as $image)
-                <div onclick="changeNewImage('{{ $image }}')" style="background-image: url('{{ $image }}')" class="image-thumb-car">
+                <div onclick="changeNewImage(this, '{{ $image }}')" style="background-image: url('{{ $image }}')" class="image-thumb-car">
                 </div>
                 @endforeach
                 @endif

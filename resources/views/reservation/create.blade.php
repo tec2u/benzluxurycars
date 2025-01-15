@@ -11,11 +11,22 @@
         margin: 0 7.5px;
         cursor: pointer;
     }
+
     .image-thumb-car:hover {
         width: 70px;
         height: 70px;
     }
+
+    .container-thumbs {
+        overflow: hidden;
+    }
 </style>
+<script defer>
+    function changeNewImage(pathImage) {
+        const imageElement = document.getElementById('cover-image')
+        imageElement.src = pathImage
+    }
+</script>
 <div class="mx-auto max-w-screen-xl bg-white rounded-md p-6 m-8 ">
     <div class="flex justify-between md:flex-row flex-col ">
         {{-- -------------------------------------------- left -------------------------------------------- --}}
@@ -106,7 +117,7 @@
                     OFF</span>
             </div>
 
-            <div class="flex">
+            <div class="flex mt-2 w-full container-thumbs">
                 @if ($car->multiple_images)
                 <div onclick="changeNewImage('{{ $car->image }}')" style="background-image: url('{{ $car->image }}')" class="image-thumb-car"></div>
                 @foreach (json_decode($car->multiple_images) as $image)
@@ -182,10 +193,6 @@
 
 
 <script>
-    function changeNewImage(pathImage) {
-        const imageElement = document.getElementById('cover-image')
-        imageElement.src = pathImage
-    }
     $(document).ready(function() {
         var flatpickrElement = document.getElementById('laravel-flatpickr');
 

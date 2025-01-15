@@ -22,7 +22,11 @@
     }
 </style>
 <script defer>
-  
+    function changeNewImage(pathImage) {
+        const imageElement = document.getElementById('cover-image')
+        console.log(imageElement)
+        imageElement.src = pathImage
+    }
 </script>
 <div class="mx-auto max-w-screen-xl bg-white rounded-md p-6 m-8 ">
     <div class="flex justify-between md:flex-row flex-col ">
@@ -107,14 +111,22 @@
 
         <div class="md:w-1/3 flex flex-col justify-start items-center">
             <div class="relative mx-3 mt-3 flex h-[200px] w-3/4   overflow-hidden rounded-xl shadow-lg">
-                <img loading="lazy" class="h-full w-full object-cover" src="{{ $car->image }}" alt="product image" />
+                <img loading="lazy" class="h-full w-full object-cover" src="{{ $car->image }}" alt="product image" id="cover-image"/>
                 <span
                     class="absolute w-24 h-8 py-1 top-0 left-0 m-2 rounded-full bg-pr-400 px-2 text-center text-sm font-medium text-white">{{ $car->reduce }}
                     %
                     OFF</span>
             </div>
 
-
+            <div class="flex mt-2 w-full container-thumbs">
+                @if ($car->multiple_images)
+                <div onclick="changeNewImage('{{ $car->image }}')" style="background-image: url('{{ $car->image }}')" class="image-thumb-car"></div>
+                @foreach (json_decode($car->multiple_images) as $image)
+                <div onclick="changeNewImage('{{ $image }}')" style="background-image: url('{{ $image }}')" class="image-thumb-car">
+                </div>
+                @endforeach
+                @endif
+            </div>
             <p class=" ms-4 max-w-full font-car text-xl mt-3 md:block hidden">{{ $car->brand }} {{ $car->model }}
                 {{ $car->engine }}
             </p>

@@ -225,7 +225,7 @@
 
 
 <script>
-    $(document).ready(function() {
+     $(document).ready(function() {
         var flatpickrElement = document.getElementById('laravel-flatpickr');
 
         if (flatpickrElement && flatpickrElement._flatpickr) {
@@ -236,11 +236,7 @@
 
                     if (startDate && endDate && startDate <= endDate) {
                         var duration = Math.ceil((endDate - startDate) / (1000 * 60 * 60 * 24));
-                        var pricePerDay = {
-                            {
-                                $car - > price_per_day
-                            }
-                        };
+                        var pricePerDay = {{$car->price_per_day}};
                         var totalPrice = duration * pricePerDay;
                         $('#duration span').text(duration + ' days');
                         $('#total-price span').text(totalPrice + ' AED');

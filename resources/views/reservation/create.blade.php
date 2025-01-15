@@ -92,9 +92,9 @@
 
             <div class="d-flex">
                 @if ($car->multiple_images)
-                    <div onclick="changeNewImage('{{ $car->image }}')" style="width: 150px; height: 150px; background-image: url({{ $car->image }}) no-repeat cover center;"></div>
+                    <div onclick="changeNewImage('{{ $car->image }}')" style="width: 150px; height: 150px; background-image: url({{ $car->image }})"></div>
                     @foreach (json_decode($car->multiple_images) as $image)
-                        <div onclick="changeNewImage('{{ $image }}')" style="width: 150px; height: 150px; background-image: url({{ $image }}) no-repeat cover center;">
+                        <div onclick="changeNewImage('{{ $image }}')" style="width: 150px; height: 150px; background-image: url({{ $image }})">
                         </div>
                     @endforeach
                 @endif

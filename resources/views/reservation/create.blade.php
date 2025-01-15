@@ -98,9 +98,9 @@
                     OFF</span>
             </div>
 
-            <div class="d-flex">
+            <div class="flex">
                 @if ($car->multiple_images)
-                <div onclick="changeNewImage('{{ $car->image }}')" style="background-image: url('{{ $car->image }}')" class="image-thumb-car"></div>
+                <div onclick="changeNewImage('{{ $car->image }}')" style="background-image: url('{{ $car->image }}')" class="image-thumb-car ms-1 me-1"></div>
                 @foreach (json_decode($car->multiple_images) as $image)
                 <div onclick="changeNewImage('{{ $image }}')" style="background-image: url('{{ $image }}')" class="image-thumb-car">
                 </div>

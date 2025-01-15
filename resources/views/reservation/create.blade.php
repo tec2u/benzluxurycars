@@ -19,6 +19,34 @@
     .container-thumbs {
         overflow: auto;
     }
+
+    .container-thumbs {
+        overflow: auto;
+        scrollbar-color: #ff9b00 transparent;
+        /* Para navegadores como Firefox */
+        scrollbar-width: thin;
+        /* Deixa o scroll mais fino no Firefox */
+    }
+
+    /* Para navegadores baseados em WebKit (Chrome, Edge, etc.) */
+    .container-thumbs::-webkit-scrollbar {
+        width: 6px;
+        /* Largura do scroll */
+        height: 6px;
+        /* Altura do scroll horizontal */
+    }
+
+    .container-thumbs::-webkit-scrollbar-thumb {
+        background-color: #ff9b00;
+        /* Cor do scroll */
+        border-radius: 4px;
+        /* Bordas arredondadas */
+    }
+
+    .container-thumbs::-webkit-scrollbar-track {
+        background-color: transparent;
+        /* Fundo do scroll */
+    }
 </style>
 <script defer>
     function changeNewImage(pathImage) {
@@ -110,7 +138,7 @@
 
         <div class="md:w-1/3 flex flex-col justify-start items-center">
             <div class="relative mx-3 mt-3 flex h-[200px] w-3/4   overflow-hidden rounded-xl shadow-lg">
-                <img loading="lazy" class="h-full w-full object-cover" src="{{ $car->image }}" alt="product image" id="cover-image"/>
+                <img loading="lazy" class="h-full w-full object-cover" src="{{ $car->image }}" alt="product image" id="cover-image" />
                 <span
                     class="absolute w-24 h-8 py-1 top-0 left-0 m-2 rounded-full bg-pr-400 px-2 text-center text-sm font-medium text-white">{{ $car->reduce }}
                     %

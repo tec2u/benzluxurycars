@@ -13,8 +13,7 @@
     }
 
     .image-thumb-car:hover {
-        min-width: 70px;
-        min-height: 70px;
+        border: 3px solid #ff9b00;
     }
 
     .container-thumbs {

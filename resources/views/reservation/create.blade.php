@@ -24,6 +24,7 @@
 <script defer>
     function changeNewImage(pathImage) {
         const imageElement = document.getElementById('cover-image')
+        console.log(imageElement)
         imageElement.src = pathImage
     }
 </script>

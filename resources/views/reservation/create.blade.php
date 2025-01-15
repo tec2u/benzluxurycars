@@ -2,10 +2,13 @@
 @section('content')
 <style>
     .image-thumb-car {
-        width: 150px;
-        height: 150px;
+        width: 60px;
+        height: 60px;
         background-size: cover;
+        border-radius: 6px;
+        overflow: hidden;
         background-repeat: no-repeat;
+        margin: 0 7.5px;
     }
 </style>
 <div class="mx-auto max-w-screen-xl bg-white rounded-md p-6 m-8 ">
@@ -100,7 +103,7 @@
 
             <div class="flex">
                 @if ($car->multiple_images)
-                <div onclick="changeNewImage('{{ $car->image }}')" style="background-image: url('{{ $car->image }}')" class="image-thumb-car ms-1 me-1"></div>
+                <div onclick="changeNewImage('{{ $car->image }}')" style="background-image: url('{{ $car->image }}')" class="image-thumb-car"></div>
                 @foreach (json_decode($car->multiple_images) as $image)
                 <div onclick="changeNewImage('{{ $image }}')" style="background-image: url('{{ $image }}')" class="image-thumb-car">
                 </div>

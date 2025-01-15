@@ -1,5 +1,13 @@
 @extends('layouts.myapp')
 @section('content')
+<style>
+    .image-thumb-car {
+        width: 150px;
+        height: 150px;
+        background-size: cover;
+        background-repeat: no-repeat;
+    }
+</style>
 <div class="mx-auto max-w-screen-xl bg-white rounded-md p-6 m-8 ">
     <div class="flex justify-between md:flex-row flex-col ">
         {{-- -------------------------------------------- left -------------------------------------------- --}}
@@ -92,11 +100,11 @@
 
             <div class="d-flex">
                 @if ($car->multiple_images)
-                    <div onclick="changeNewImage('{{ $car->image }}')" style="width: 150px; height: 150px; background-image: url({{ $car->image }})"></div>
-                    @foreach (json_decode($car->multiple_images) as $image)
-                        <div onclick="changeNewImage('{{ $image }}')" style="width: 150px; height: 150px; background-image: url({{ $image }})">
-                        </div>
-                    @endforeach
+                <div onclick="changeNewImage('{{ $car->image }}')" style="background-image: url('{{ $car->image }}')" class="image-thumb-car"></div>
+                @foreach (json_decode($car->multiple_images) as $image)
+                <div onclick="changeNewImage('{{ $image }}')" style="background-image: url('{{ $image }}')" class="image-thumb-car">
+                </div>
+                @endforeach
                 @endif
             </div>
             <p class=" ms-4 max-w-full font-car text-xl mt-3 md:block hidden">{{ $car->brand }} {{ $car->model }}

@@ -55,6 +55,7 @@
     function changeNewImage(iThis, pathImage) {
         $('.selected-thumb').removeClass('selected-thumb')
         $(iThis).addClass('selected-thumb')
+        console.log(iThis)
         const imageElement = document.getElementById('cover-image')
         imageElement.src = pathImage
     }

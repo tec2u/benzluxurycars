@@ -16,7 +16,7 @@ class adminDemo extends Seeder
     {
         User::create([
             'name' => 'Test Admin',
-            'email' => 'test_admin@email.com',
+            'email' => '    @email.com',
             'password' => Hash::make('pass1234'),
             'role' => 'admin',
             'avatar' => '/images/avatars/avatar_2.jpg'

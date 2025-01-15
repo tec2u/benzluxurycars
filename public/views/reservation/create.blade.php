@@ -89,13 +89,11 @@
                     OFF</span>
             </div>
             <div class="d-flex">
-                @if ($car->multiple_images)
                     <div onclick="changeNewImage('{{ $car->image }}')" style="width: 150px; height: 150px; background-image: url({{ $car->image }}) no-repeat cover center;"></div>
                     @foreach (json_decode($car->multiple_images) as $image)
                         <div onclick="changeNewImage('{{ $image }}')" style="width: 150px; height: 150px; background-image: url({{ $image }}) no-repeat cover center;">
                         </div>
                     @endforeach
-                @endif
             </div>
             <p class=" ms-4 max-w-full font-car text-xl mt-3 md:block hidden">{{ $car->brand }} {{ $car->model }}
                 {{ $car->engine }}

@@ -147,11 +147,11 @@
                                     <label for="more-photos"
                                         class="relative cursor-pointer rounded-md bg-white font-semibold text-pr-400 focus-within:outline-none focus-within:ring-2 focus-within:ring-pr-400 focus-within:ring-offset-2 hover:text-pr-400">
                                         <span>Upload multiples files</span>
-                                        <input id="more-photos" name="multiple_images[]" type="file" class="sr-only" multiple accept="image/jpeg, image/png, image/gif" onchange="validateTotalFileSize(this)">
+                                        <input id="more-photos" name="multiple_images[]" type="file" class="sr-only" multiple accept="image/jpeg, image/png, image/gif" onchange="validateTotalFileSizeAndIndividualSize(this)">
                                     </label>
                                     <p class="pl-1">or drag and drop</p>
                                 </div>
-                                <p class="text-xs leading-5 text-gray-600">PNG, JPG, GIF up to 10MB</p>
+                                <p class="text-xs leading-5 text-gray-600">The minimum individual file size must not exceed 150kb and the total must not be greater than 10mb</p>
                             </div>
                         </div>
                         @error('image')
@@ -197,20 +197,31 @@
 </div>
 @endsection
 <script>
-    function validateTotalFileSize(input) {
-        const maxTotalSize = 10 * 1024 * 1024; // Limite de 10MB
-        let totalSize = 0; // Variável para somar o tamanho total dos arquivos
+    function validateTotalFileSizeAndIndividualSize(input) {
+    const maxTotalSize = 10 * 1024 * 1024; // Limit of 10MB
+    const maxFileSize = 150 * 1024; // Limit of 150KB per file
+    let totalSize = 0; // Variable to sum the total file size
 
-        const files = input.files;
+    const files = input.files;
 
-        for (let i = 0; i < files.length; i++) {
-            totalSize += files[i].size; // Soma o tamanho de cada arquivo
+    for (let i = 0; i < files.length; i++) {
+        const fileSize = files[i].size;
+
+        // Check if any file exceeds the individual file size limit
+        if (fileSize > maxFileSize) {
+            alert(`The file "${files[i].name}" exceeds the size limit of 150KB. Please select a smaller file.`);
+            input.value = ''; // Clear the input field
+            return; // Exit the function
         }
 
-        // Verifica se o tamanho total excede o limite
-        if (totalSize > maxTotalSize) {
-            alert('O tamanho total dos arquivos excede o limite de 10MB. Por favor, selecione arquivos menores.');
-            input.value = ''; // Limpa o campo de input
-        }
+        totalSize += fileSize; // Add the size of each file
     }
+
+    // Check if the total file size exceeds the limit
+    if (totalSize > maxTotalSize) {
+        alert('The total file size exceeds the 10MB limit. Please select smaller files.');
+        input.value = ''; // Clear the input field
+    }
+}
+
 </script>

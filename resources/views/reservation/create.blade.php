@@ -2,8 +2,8 @@
 @section('content')
 <style>
     .image-thumb-car {
-        width: 60px;
-        height: 60px;
+        min-width: 60px;
+        min-height: 60px;
         background-size: cover;
         border-radius: 6px;
         overflow: hidden;
@@ -13,12 +13,12 @@
     }
 
     .image-thumb-car:hover {
-        width: 70px;
-        height: 70px;
+        min-width: 70px;
+        min-height: 70px;
     }
 
     .container-thumbs {
-        overflow: hidden;
+        overflow: auto;
     }
 </style>
 <script defer>

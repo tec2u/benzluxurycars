@@ -17,7 +17,7 @@
     }
 
     .selected-thumb {
-        border: 3px solidrgb(255, 184, 79)
+        border: 3px solid rgb(255, 184, 79)
     }
     .container-thumbs {
         overflow: auto;
@@ -55,7 +55,6 @@
     function changeNewImage(iThis, pathImage) {
         $('.selected-thumb').removeClass('selected-thumb')
         $(iThis).addClass('selected-thumb')
-        console.log(iThis)
         const imageElement = document.getElementById('cover-image')
         imageElement.src = pathImage
     }

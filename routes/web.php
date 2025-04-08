@@ -15,7 +15,10 @@ use App\Http\Controllers\PaymentController;
 use App\Models\User;
 use App\Models\Car;
 use App\Models\Reservation;
+use App\Http\Controllers\Auth\RegisterController;
+use App\Http\Controllers\NetworkController;
 
+Route::get('/register/{id}', [RegisterController::class, 'showRegistrationFormWithReferral'])->name('register.referral');
 
 // ------------------- guest routes --------------------------------------- //
 Route::get('/', function () {
@@ -98,6 +101,7 @@ Route::prefix('admin')->middleware('admin')->group(function () {
 
 
 // ------------------- client routes --------------------------------------- //
+Route::get('/network', [NetworkController::class, 'index'])->name('network');
 Route::get('/confirm-payment/{id}', [PaymentController::class, 'confirmPayment'])->name('confirmPayment');
 Route::get('/reservations/{car}', [ReservationController::class, 'create'])->name('car.reservation')->middleware('auth', 'restrictAdminAccess');
 Route::post('/reservations/{car}', [ReservationController::class, 'store'])->name('car.reservationStore')->middleware('auth', 'restrictAdminAccess');

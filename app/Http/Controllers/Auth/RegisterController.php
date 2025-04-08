@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
+use App\Models\Network;
 use App\Providers\RouteServiceProvider;
 use App\Models\User;
 // use GuzzleHttp\Psr7\Request;
@@ -59,7 +60,7 @@ class RegisterController extends Controller
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email:rfc,dns', 'unique:users'],
             'password' => ['required', 'string', 'min:8', 'confirmed'],
-
+            'referrer' => ['required', 'integer']
         ]);
     }
 
@@ -126,13 +127,23 @@ class RegisterController extends Controller
             ?: redirect($this->redirectPath());
     }
 
-
     protected function create(array $data)
     {
-        return User::create([
+        $upline = Network::where('user_id', $data['referrer'])->first();
+
+        $user = User::create([
             'name' => $data['name'],
             'email' => $data['email'],
             'password' => Hash::make($data['password']),
+            'referrer' => $data['referrer']
         ]);
+
+        Network::create([
+            'user_id' => $user->id,
+            'upline_id' => $upline->id,
+            'qty' => 0,
+        ]);
+
+        return $user;
     }
 }

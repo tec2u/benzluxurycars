@@ -4,7 +4,12 @@
         <div class="border p-5 md:w-1/2 w-4/5 bg-sec-100 my-12">
             <form method="POST" action="{{ route('register') }}" enctype="multipart/form-data">
                 @csrf
-
+                @if (isset($referrer))
+                    <div class="block mb-2 font-medium text-gray-900 dark:text-white">Indicated by <strong>{{ $referrer->name }}</strong></div>
+                    <input type="hidden" name="referrer" value="{{ $referrer->id }}">
+                @else
+                    <input type="hidden" name="referrer" value="2">
+                @endif
                 <div class="mb-6">
                     <label for="name" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Name : </label>
                     <input type="text" id="name" name="name" value="{{ old('name') }}"

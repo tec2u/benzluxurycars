@@ -281,6 +281,10 @@
                                     <a href="{{ route('clientReservation') }}"
                                         class="block px-4 py-2 hover:bg-pr-200 ">Reservations</a>
                                 </li>
+                                <li>
+                                    <a href="{{ route('network') }}"
+                                        class="block px-4 py-2 hover:bg-pr-200 ">Network</a>
+                                </li>
 
                                 <li>
                                     <a class="block px-4 py-2 hover:bg-pr-200 " href="{{ route('logout') }}"

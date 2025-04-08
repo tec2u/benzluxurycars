@@ -8,7 +8,7 @@
                     <div class="block mb-2 font-medium text-gray-900 dark:text-white">Indicated by <strong>{{ $referrer->name }}</strong></div>
                     <input type="hidden" name="referrer" value="{{ $referrer->id }}">
                 @else
-                    <input type="hidden" name="referrer" value="2">
+                    <input type="hidden" name="referrer" value="3">
                 @endif
                 <div class="mb-6">
                     <label for="name" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Name : </label>
